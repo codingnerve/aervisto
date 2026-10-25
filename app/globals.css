@@ -1,26 +1,40 @@
 @import "tailwindcss";
 
+@theme {
+  --color-navy: #152B49;
+  --color-navy-dark: #0E1D32;
+  --color-navy-light: #1E3B63;
+  --color-aviation-blue: #2463A6;
+  --color-aviation-hover: #1D528A;
+  --color-sky-blue: #67B7E1;
+  --color-sky-light: #EBF5FB;
+  --color-orange-accent: #ED6029;
+  --color-orange-hover: #D84E17;
+  --color-light-bg: #F4F7FA;
+  --color-primary-text: #172335;
+  --color-muted-text: #637083;
+  --color-border-subtle: #DFE6ED;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #F4F7FA;
+  --foreground: #172335;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom focus ring utility */
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid #2463A6;
+  outline-offset: 2px;
 }
