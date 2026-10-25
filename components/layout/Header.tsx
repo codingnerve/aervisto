@@ -46,23 +46,25 @@ export function Header() {
       }`}
     >
       {/* Top Notification Bar for Service Clarity */}
-      <div className="bg-[#152B49] text-white text-[11px] sm:text-xs py-1.5 px-4 font-medium">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span>Agent-Assisted International Flight Reservations & Enquiries (US • UK • Canada)</span>
+      <div className="bg-[#152B49] text-white text-[10px] sm:text-xs py-1 sm:py-1.5 px-3 sm:px-4 font-medium">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-0.5 sm:gap-1 text-center sm:text-left">
+          <div className="flex items-center justify-center sm:justify-start gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+            <span className="truncate">Agent-Assisted Flight Reservations & Enquiries (US • UK • Canada)</span>
           </div>
-          <div className="text-slate-300 text-[11px]">
+          <div className="text-slate-300 text-[10px] sm:text-[11px]">
             Support Hours: {phoneConfig.hours}
           </div>
         </div>
       </div>
 
       {/* Main Navigation Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+      <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-20 gap-1.5 sm:gap-4">
           {/* Logo */}
-          <Logo size="md" variant="navy" />
+          <div className="shrink-0 min-w-0">
+            <Logo size="md" variant="navy" />
+          </div>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6" aria-label="Main Navigation">
@@ -88,23 +90,21 @@ export function Header() {
           </nav>
 
           {/* Desktop Phone CTA */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
             <CallCTA variant="header" sourceContext="header" />
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-2 lg:hidden">
-            <div className="sm:hidden">
-              <CallCTA variant="header" sourceContext="mobile_header" />
-            </div>
+          {/* Mobile Right Controls: Phone CTA + Hamburger */}
+          <div className="flex items-center gap-1.5 sm:gap-2.5 lg:hidden shrink-0">
+            <CallCTA variant="header" sourceContext="mobile_header" />
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus-ring"
+              className="p-1.5 sm:p-2 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus-ring shrink-0"
               aria-label="Toggle mobile menu"
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
         </div>

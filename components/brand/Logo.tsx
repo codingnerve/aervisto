@@ -17,21 +17,21 @@ export function Logo({
   asLink = true,
 }: LogoProps) {
   const iconSizes = {
-    sm: "w-7 h-7",
-    md: "w-9 h-9",
-    lg: "w-11 h-11",
+    sm: "w-6 h-6 sm:w-7 sm:h-7",
+    md: "w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9",
+    lg: "w-9 h-9 sm:w-11 sm:h-11",
   };
 
   const textSizes = {
-    sm: "text-lg",
-    md: "text-2xl",
-    lg: "text-3xl",
+    sm: "text-base sm:text-lg",
+    md: "text-lg sm:text-xl md:text-2xl",
+    lg: "text-2xl sm:text-3xl",
   };
 
   const taglineSizes = {
-    sm: "text-[9px] tracking-wider",
-    md: "text-[10px] tracking-widest",
-    lg: "text-xs tracking-widest",
+    sm: "text-[7.5px] sm:text-[9px] tracking-tight sm:tracking-wider",
+    md: "text-[7.5px] min-[380px]:text-[8px] sm:text-[9px] md:text-[10px] tracking-tight sm:tracking-widest",
+    lg: "text-[10px] sm:text-xs tracking-widest",
   };
 
   const isLight = variant === "light";
@@ -40,7 +40,7 @@ export function Logo({
   const taglineColor = isLight ? "text-slate-300" : "text-[#637083]";
 
   const content = (
-    <div className={`flex items-center gap-2.5 select-none ${className}`}>
+    <div className={`flex items-center gap-1.5 sm:gap-2.5 select-none shrink-0 ${className}`}>
       {/* Precision Aviation Wing / Compass SVG Icon */}
       <svg
         className={`${iconSizes[size]} flex-shrink-0 transition-transform duration-200 group-hover:scale-105`}
@@ -76,16 +76,16 @@ export function Logo({
         />
       </svg>
 
-      <div className="flex flex-col leading-none">
+      <div className="flex flex-col leading-none shrink-0 min-w-0">
         <span
-          className={`font-extrabold tracking-tight font-sans ${textSizes[size]} ${primaryTextColor} flex items-center`}
+          className={`font-black tracking-tight font-sans ${textSizes[size]} ${primaryTextColor} flex items-center leading-none`}
         >
           AER<span className={secondaryTextColor}>VISTO</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#ED6029] ml-1 inline-block" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#ED6029] ml-1 inline-block shrink-0" />
         </span>
         {showTagline && (
           <span
-            className={`font-semibold uppercase font-sans mt-0.5 ${taglineSizes[size]} ${taglineColor}`}
+            className={`font-semibold uppercase font-sans mt-0.5 ${taglineSizes[size]} ${taglineColor} whitespace-nowrap leading-none`}
           >
             Airline Ticket Enquiries
           </span>
@@ -98,7 +98,7 @@ export function Logo({
     return (
       <Link
         href="/"
-        className="group inline-flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2463A6] rounded-md p-0.5"
+        className="group inline-flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2463A6] rounded-md p-0.5 shrink-0"
         aria-label="Aervisto - Back to Homepage"
       >
         {content}
