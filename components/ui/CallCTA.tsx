@@ -12,12 +12,14 @@ interface CallCTAProps {
   allowMarketSelect?: boolean;
   className?: string;
   sourceContext?: string;
+  label?: string;
 }
 
 export function CallCTA({
   variant = "primary",
   className = "",
   sourceContext = "cta",
+  label,
 }: CallCTAProps) {
   const config = getPhoneConfig();
   const phoneNumber = config.defaultPhone;
@@ -120,10 +122,10 @@ export function CallCTA({
       href={telHref}
       onClick={handleClick}
       className={`inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl bg-[#152B49] hover:bg-[#2463A6] text-white font-bold text-sm sm:text-base transition-colors shadow-sm focus-ring ${className}`}
-      aria-label={`Call Booking Agent at ${phoneNumber}`}
+      aria-label={label || `Call Booking Agent at ${phoneNumber}`}
     >
       <Phone className="w-4 h-4 text-[#67B7E1]" />
-      <span>Call {phoneNumber}</span>
+      <span>{label || `Call ${phoneNumber}`}</span>
     </a>
   );
 }

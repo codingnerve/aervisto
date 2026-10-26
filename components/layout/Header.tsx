@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Plane, Phone, HelpCircle, MapPin, Compass } from "lucide-react";
+import { Menu, X, Plane, Phone, HelpCircle, MapPin, Compass, Globe } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { CallCTA } from "@/components/ui/CallCTA";
 import { getPhoneConfig } from "@/lib/phone-config";
@@ -13,6 +13,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const phoneConfig = getPhoneConfig();
+  const isSpanish = pathname?.startsWith("/es");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +38,16 @@ export function Header() {
     { href: "/contact", label: "Contact" },
   ];
 
+  const spanishNavLinks = [
+    { href: "#buscar-vuelo", label: "Buscar Vuelo", icon: Plane },
+    { href: "#destinos", label: "Destinos", icon: MapPin },
+    { href: "#rutas", label: "Rutas", icon: Compass },
+    { href: "#ventajas", label: "Ventajas", icon: null },
+    { href: "#preguntas", label: "Preguntas Frecuentes", icon: HelpCircle },
+  ];
+
+  const activeLinks = isSpanish ? spanishNavLinks : navLinks;
+
   return (
     <header
       className={`sticky top-0 z-40 transition-all duration-200 ${
@@ -50,10 +61,14 @@ export function Header() {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-0.5 sm:gap-1 text-center sm:text-left">
           <div className="flex items-center justify-center sm:justify-start gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-            <span className="truncate">Agent-Assisted Flight Reservations & Enquiries (US • UK • Canada)</span>
+            <span className="truncate">
+              {isSpanish
+                ? "Atención Telefónica y Reservas de Vuelos en Español (EE. UU. • Reino Unido • Canadá)"
+                : "Agent-Assisted Flight Reservations & Enquiries (US • UK • Canada)"}
+            </span>
           </div>
           <div className="text-slate-300 text-[10px] sm:text-[11px]">
-            Support Hours: {phoneConfig.hours}
+            {isSpanish ? "Horario de Atención:" : "Support Hours:"} {phoneConfig.hours}
           </div>
         </div>
       </div>
@@ -67,8 +82,8 @@ export function Header() {
           </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6" aria-label="Main Navigation">
-            {navLinks.map((link) => {
+          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-5" aria-label="Main Navigation">
+            {activeLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
@@ -89,14 +104,59 @@ export function Header() {
             })}
           </nav>
 
-          {/* Desktop Phone CTA */}
+          {/* Desktop Right CTAs: Language Switcher + Phone CTA */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
-            <CallCTA variant="header" sourceContext="header" />
+            {isSpanish ? (
+              <Link
+                href="/"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg border border-slate-300 text-slate-700 bg-slate-50 hover:bg-slate-100 hover:text-slate-900 transition-all shadow-xs"
+                title="Switch to English"
+              >
+                <Globe className="w-3.5 h-3.5 text-slate-600" />
+                <span>English</span>
+              </Link>
+            ) : (
+              <Link
+                href="/es"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg border border-[#2463A6]/30 text-[#152B49] bg-[#EBF5FB]/80 hover:bg-[#EBF5FB] hover:text-[#2463A6] transition-all shadow-xs"
+                title="Ver versión en Español"
+              >
+                <Globe className="w-3.5 h-3.5 text-[#2463A6]" />
+                <span>Español</span>
+              </Link>
+            )}
+
+            <CallCTA
+              variant="header"
+              sourceContext={isSpanish ? "spanish_header" : "header"}
+              label={isSpanish ? "Llamar al Agente" : undefined}
+            />
           </div>
 
-          {/* Mobile Right Controls: Phone CTA + Hamburger */}
-          <div className="flex items-center gap-1.5 sm:gap-2.5 lg:hidden shrink-0">
-            <CallCTA variant="header" sourceContext="mobile_header" />
+          {/* Mobile Right Controls: Language Toggle + Phone CTA + Hamburger */}
+          <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden shrink-0">
+            {isSpanish ? (
+              <Link
+                href="/"
+                className="px-2 py-1 text-[11px] font-bold rounded-md border border-slate-300 bg-slate-100 text-slate-700"
+              >
+                EN
+              </Link>
+            ) : (
+              <Link
+                href="/es"
+                className="px-2 py-1 text-[11px] font-bold rounded-md border border-[#2463A6]/40 bg-[#EBF5FB] text-[#2463A6]"
+              >
+                ES
+              </Link>
+            )}
+
+            <CallCTA
+              variant="header"
+              sourceContext={isSpanish ? "spanish_mobile_header" : "mobile_header"}
+              label={isSpanish ? "Llamar" : undefined}
+            />
+
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -114,7 +174,7 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="lg:hidden border-b border-[#DFE6ED] bg-white px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
           <div className="space-y-1 mb-4">
-            {navLinks.map((link) => {
+            {activeLinks.map((link) => {
               const Icon = link.icon;
               const isActive = pathname === link.href;
               return (
@@ -135,15 +195,44 @@ export function Header() {
             })}
           </div>
 
+          {/* Language Switcher in Mobile Drawer */}
+          <div className="mb-4 pt-2 border-t border-slate-100 flex items-center justify-between">
+            <span className="text-xs font-bold text-slate-500 uppercase">Idioma / Language:</span>
+            {isSpanish ? (
+              <Link
+                href="/"
+                onClick={() => setMobileMenuOpen(false)}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#152B49] bg-slate-100 px-3 py-1 rounded-md"
+              >
+                <Globe className="w-3.5 h-3.5" />
+                <span>Switch to English</span>
+              </Link>
+            ) : (
+              <Link
+                href="/es"
+                onClick={() => setMobileMenuOpen(false)}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#2463A6] bg-[#EBF5FB] px-3 py-1 rounded-md"
+              >
+                <Globe className="w-3.5 h-3.5" />
+                <span>Cambiar a Español</span>
+              </Link>
+            )}
+          </div>
+
           {/* Mobile Call Box */}
           <div className="pt-3 border-t border-slate-100">
             <div className="text-xs font-bold text-[#637083] uppercase mb-2">
-              Speak to a Booking Specialist:
+              {isSpanish ? "Hable con un Agente en Español:" : "Speak to a Booking Specialist:"}
             </div>
-            <CallCTA variant="primary" sourceContext="mobile_menu" />
+            <CallCTA
+              variant="primary"
+              sourceContext={isSpanish ? "spanish_mobile_menu" : "mobile_menu"}
+              label={isSpanish ? "Llamar Ahora al Agente" : undefined}
+            />
           </div>
         </div>
       )}
     </header>
   );
 }
+

@@ -2,16 +2,19 @@
 
 import React from "react";
 import Link from "next/link";
-import { Phone, Send } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Phone, Send, Search } from "lucide-react";
 import { getMarketPhone } from "@/lib/phone-config";
 import { trackEvent } from "@/lib/analytics";
 
 export function MobileStickyBar() {
+  const pathname = usePathname();
+  const isSpanish = pathname?.startsWith("/es");
   const phone = getMarketPhone("US");
 
   const handleCallClick = () => {
     trackEvent("phone_cta_clicked", {
-      category: "mobile_sticky_bar",
+      category: isSpanish ? "spanish_mobile_sticky_bar" : "mobile_sticky_bar",
       phoneNumber: phone.displayNumber || "unknown",
       market: phone.market,
     });
@@ -28,17 +31,27 @@ export function MobileStickyBar() {
             aria-label={`Call Booking Team: ${phone.displayNumber}`}
           >
             <Phone className="w-4 h-4 flex-shrink-0 animate-bounce" />
-            <span className="truncate">Call {phone.displayNumber}</span>
+            <span className="truncate">{isSpanish ? `Llamar ${phone.displayNumber}` : `Call ${phone.displayNumber}`}</span>
           </a>
         ) : null}
 
-        <Link
-          href="/flights"
-          className="flex-1 inline-flex items-center justify-center gap-1.5 py-3 px-3 bg-[#152B49] active:bg-[#2463A6] text-white font-bold text-xs rounded-xl shadow focus:outline-none text-center"
-        >
-          <Send className="w-3.5 h-3.5 flex-shrink-0" />
-          <span className="truncate">Flight Enquiry</span>
-        </Link>
+        {isSpanish ? (
+          <a
+            href="#buscar-vuelo"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 py-3 px-3 bg-[#152B49] active:bg-[#2463A6] text-white font-bold text-xs rounded-xl shadow focus:outline-none text-center"
+          >
+            <Search className="w-3.5 h-3.5 flex-shrink-0" />
+            <span className="truncate">Buscar Vuelo</span>
+          </a>
+        ) : (
+          <Link
+            href="/flights"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 py-3 px-3 bg-[#152B49] active:bg-[#2463A6] text-white font-bold text-xs rounded-xl shadow focus:outline-none text-center"
+          >
+            <Send className="w-3.5 h-3.5 flex-shrink-0" />
+            <span className="truncate">Flight Enquiry</span>
+          </Link>
+        )}
       </div>
     </div>
   );
