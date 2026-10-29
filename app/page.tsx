@@ -149,8 +149,8 @@ export default function HomePage() {
             </div>
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-[#ED6029]" />
-              <a href={config.defaultPhone ? `tel:${config.defaultPhone.replace(/[^\d+]/g, "")}` : "#"} className="hover:underline font-bold text-white">
-                Call {config.defaultPhone || "+1 (888) 203-9188"}
+              <a href={config.defaultPhone ? `tel:${config.defaultPhone.replace(/[^\d+]/g, "")}` : "tel:+18443619076"} className="hover:underline font-bold text-white">
+                Call {config.defaultPhone || "+1 (844) 361-9076"}
               </a>
             </div>
           </div>
@@ -259,7 +259,7 @@ export default function HomePage() {
                 <div className="text-left">
                   <div className="text-xs font-bold text-[#152B49]">Direct Booking Line</div>
                   <div className="text-sm font-extrabold text-[#ED6029]">
-                    {config.defaultPhone || "+1 (888) 203-9188"}
+                    {config.defaultPhone || "+1 (844) 361-9076"}
                   </div>
                 </div>
               </div>
@@ -492,11 +492,11 @@ export default function HomePage() {
 
           <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href={config.defaultPhone ? `tel:${config.defaultPhone.replace(/[^\d+]/g, "")}` : "#"}
+              href={config.defaultPhone ? `tel:${config.defaultPhone.replace(/[^\d+]/g, "")}` : "tel:+18443619076"}
               className="w-full sm:w-auto px-8 py-4 bg-[#ED6029] hover:bg-[#D84E17] text-white font-extrabold text-lg rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
             >
               <Phone className="w-5 h-5 animate-bounce" />
-              <span>Call {config.defaultPhone || "+1 (888) 203-9188"}</span>
+              <span>Call {config.defaultPhone || "+1 (844) 361-9076"}</span>
             </a>
 
             <Link

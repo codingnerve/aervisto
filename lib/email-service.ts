@@ -122,7 +122,7 @@ function buildCustomerAckHtml(data: FlightEnquiryInput, referenceId: string): st
         <li>Once you confirm your choice, your agent will assist with reserving your flights through the appropriate booking channel.</li>
       </ol>
       <p style="line-height: 1.6; color: #4A5568;">
-        If you have urgent travel changes or prefer to speak with our booking team immediately, please call our support desk quoting your reference <strong>${referenceId}</strong>.
+        If you have urgent travel changes or prefer to speak with our booking team immediately, please call our support desk at <strong>+1 (844) 361-9076</strong> quoting your reference <strong>${referenceId}</strong>.
       </p>
       <div style="margin-top: 32px; padding-top: 16px; border-top: 1px solid #DFE6ED; font-size: 12px; color: #637083;">
         <p style="margin: 0 0 4px;"><strong>Aervisto Flight Reservation Assistance</strong></p>

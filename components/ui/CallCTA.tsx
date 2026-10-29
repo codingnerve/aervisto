@@ -47,7 +47,7 @@ export function CallCTA({
         <span className="font-mono tracking-tight font-bold whitespace-nowrap">
           <span className="hidden sm:inline">{phoneNumber}</span>
           <span className="sm:hidden text-[11px] min-[360px]:text-xs">
-            <span className="hidden min-[410px]:inline">+1 </span>(888) 203-9188
+            <span className="hidden min-[410px]:inline">+1 </span>{phoneNumber.replace(/^\+1\s*/, "")}
           </span>
         </span>
       </a>

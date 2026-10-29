@@ -15,15 +15,15 @@ export interface MarketPhoneInfo {
  * Normalizes phone numbers for tel: links
  */
 export function formatTelHref(raw: string | undefined | null): string {
-  if (!raw || !raw.trim()) return "tel:+18882039188";
+  if (!raw || !raw.trim()) return "tel:+18443619076";
   const cleaned = raw.replace(/[^\d+]/g, "");
-  return cleaned ? `tel:${cleaned}` : "tel:+18882039188";
+  return cleaned ? `tel:${cleaned}` : "tel:+18443619076";
 }
 
 export const PRIMARY_PHONE =
   process.env.NEXT_PUBLIC_SUPPORT_PHONE ||
   process.env.SUPPORT_PHONE ||
-  "+1 (888) 203-9188";
+  "+1 (844) 361-9076";
 
 /**
  * Returns centralized phone configuration.
