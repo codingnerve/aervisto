@@ -89,11 +89,12 @@ export function trackEvent(eventName: AnalyticsEventName, params: EventParams = 
     });
   }
 
-  // 2. Google Analytics 4 (gtag)
+  // 2. Google Analytics 4 / Google Ads (gtag)
   if (typeof win.gtag === "function") {
-    win.gtag("event", eventName, {
-      ...params,
-      send_to: process.env.NEXT_PUBLIC_GA4_ID,
-    });
+    const eventPayload: Record<string, unknown> = { ...params };
+    if (process.env.NEXT_PUBLIC_GA4_ID) {
+      eventPayload.send_to = process.env.NEXT_PUBLIC_GA4_ID;
+    }
+    win.gtag("event", eventName, eventPayload);
   }
 }

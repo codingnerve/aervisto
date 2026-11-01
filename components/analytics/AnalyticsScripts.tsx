@@ -5,9 +5,33 @@ import Script from "next/script";
 export function AnalyticsScripts() {
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
   const ga4Id = process.env.NEXT_PUBLIC_GA4_ID;
+  const googleAdsId =
+    process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || "AW-18549238696";
 
   return (
     <>
+      {/* Google tag (gtag.js) */}
+      {googleAdsId && (
+        <>
+          <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}
+          />
+          <Script
+            id="google-tag-gtag"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${googleAdsId}');
+              `,
+            }}
+          />
+        </>
+      )}
+
       {/* Google Tag Manager */}
       {gtmId && (
         <>
@@ -38,10 +62,12 @@ export function AnalyticsScripts() {
       {/* Google Analytics 4 */}
       {ga4Id && (
         <>
-          <Script
-            strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}
-          />
+          {!googleAdsId && (
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}
+            />
+          )}
           <Script
             id="ga4-init"
             strategy="afterInteractive"
