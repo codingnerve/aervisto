@@ -25,6 +25,22 @@ export const PRIMARY_PHONE =
   process.env.SUPPORT_PHONE ||
   "+1 (844) 361-9076";
 
+/** Dedicated phone line shown on the rail section (/trains and /trains/*). */
+export const TRAINS_PHONE =
+  process.env.NEXT_PUBLIC_TRAINS_PHONE || "+1 (925) 257-2406";
+
+export function isTrainsPath(pathname: string | null | undefined): boolean {
+  return pathname === "/trains" || !!pathname?.startsWith("/trains/");
+}
+
+/**
+ * Returns the phone number to display for a given page path: the dedicated
+ * rail line on /trains pages, the primary support line everywhere else.
+ */
+export function getPhoneForPath(pathname: string | null | undefined): string {
+  return isTrainsPath(pathname) ? TRAINS_PHONE : PRIMARY_PHONE;
+}
+
 /**
  * Returns centralized phone configuration.
  * Uses a single centralized phone number across the entire website.

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Plane, Phone, HelpCircle, MapPin, Compass, Globe } from "lucide-react";
+import { Menu, X, Plane, Phone, HelpCircle, MapPin, Compass, Globe, TrainFront } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { CallCTA } from "@/components/ui/CallCTA";
 import { getPhoneConfig } from "@/lib/phone-config";
@@ -33,6 +33,7 @@ export function Header() {
     { href: "/routes", label: "Popular Routes", icon: Compass },
     { href: "/destinations", label: "Destinations", icon: MapPin },
     { href: "/airlines", label: "Airlines", icon: Plane },
+    { href: "/trains", label: "Trains", icon: TrainFront },
     { href: "/about", label: "About Us" },
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" },

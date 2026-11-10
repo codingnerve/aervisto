@@ -4,13 +4,19 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Phone, Send, Search } from "lucide-react";
-import { getMarketPhone } from "@/lib/phone-config";
+import { getMarketPhone, getPhoneForPath, formatTelHref } from "@/lib/phone-config";
 import { trackEvent } from "@/lib/analytics";
 
 export function MobileStickyBar() {
   const pathname = usePathname();
   const isSpanish = pathname?.startsWith("/es");
-  const phone = getMarketPhone("US");
+  const marketPhone = getMarketPhone("US");
+  const pagePhone = getPhoneForPath(pathname);
+  const phone = {
+    ...marketPhone,
+    displayNumber: pagePhone,
+    telHref: formatTelHref(pagePhone),
+  };
 
   const handleCallClick = () => {
     trackEvent("phone_cta_clicked", {

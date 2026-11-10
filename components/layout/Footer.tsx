@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Phone, Mail, Clock, ShieldCheck } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
-import { getPhoneConfig, formatTelHref } from "@/lib/phone-config";
+import { getPhoneConfig, getPhoneForPath, formatTelHref } from "@/lib/phone-config";
 import { POPULAR_ROUTES } from "@/lib/routes-data";
 import { POPULAR_DESTINATIONS } from "@/lib/destinations-data";
 
@@ -13,7 +13,8 @@ export function Footer() {
   const pathname = usePathname();
   const isSpanish = pathname?.startsWith("/es");
   const config = getPhoneConfig();
-  const telHref = formatTelHref(config.defaultPhone);
+  const phone = getPhoneForPath(pathname);
+  const telHref = formatTelHref(phone);
 
   return (
     <footer className="bg-[#152B49] text-white pt-14 pb-24 md:pb-14 border-t border-[#1E3B63]">
@@ -59,7 +60,7 @@ export function Footer() {
                   className="flex items-center gap-2 hover:text-white transition-colors"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#ED6029]" />
-                  <span className="font-bold text-white font-mono">{config.defaultPhone}</span>
+                  <span className="font-bold text-white font-mono">{phone}</span>
                 </a>
               </li>
               <li>
@@ -167,6 +168,13 @@ export function Footer() {
                   </Link>
                 )}
               </li>
+              {!isSpanish && (
+                <li>
+                  <Link href="/trains" className="hover:text-white transition-colors block">
+                    Trains &amp; Rail Guides
+                  </Link>
+                </li>
+              )}
               <li>
                 {isSpanish ? (
                   <a href={telHref} className="hover:text-white transition-colors block">
@@ -224,7 +232,7 @@ export function Footer() {
                 <span className="text-slate-400">Reserva Asistida</span>
                 <span className="text-slate-600">•</span>
                 <a href={telHref} className="text-[#67B7E1] font-bold hover:underline">
-                  Llamar: {config.defaultPhone}
+                  Llamar: {phone}
                 </a>
               </>
             ) : (

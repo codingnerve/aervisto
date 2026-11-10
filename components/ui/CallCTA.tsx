@@ -3,11 +3,12 @@
 import React from "react";
 import Link from "next/link";
 import { Phone, MessageSquare } from "lucide-react";
-import { getPhoneConfig, formatTelHref } from "@/lib/phone-config";
+import { usePathname } from "next/navigation";
+import { getPhoneConfig, getPhoneForPath, formatTelHref } from "@/lib/phone-config";
 import { trackEvent } from "@/lib/analytics";
 
 interface CallCTAProps {
-  variant?: "primary" | "secondary" | "header" | "sticky" | "hero" | "banner";
+  variant?: "primary" | "secondary" | "header" | "sticky" | "hero" | "banner" | "accent";
   market?: string;
   allowMarketSelect?: boolean;
   className?: string;
@@ -21,8 +22,9 @@ export function CallCTA({
   sourceContext = "cta",
   label,
 }: CallCTAProps) {
+  const pathname = usePathname();
   const config = getPhoneConfig();
-  const phoneNumber = config.defaultPhone;
+  const phoneNumber = getPhoneForPath(pathname);
   const telHref = formatTelHref(phoneNumber);
 
   const handleClick = () => {
@@ -113,6 +115,21 @@ export function CallCTA({
           </a>
         </div>
       </div>
+    );
+  }
+
+  // Accent variant (orange, label-aware, sized for cards and sidebars)
+  if (variant === "accent") {
+    return (
+      <a
+        href={telHref}
+        onClick={handleClick}
+        className={`inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl bg-orange-accent hover:bg-orange-hover text-white font-bold text-sm sm:text-base transition-colors shadow-sm focus-ring ${className}`}
+        aria-label={label || `Call Booking Agent at ${phoneNumber}`}
+      >
+        <Phone className="w-4 h-4" aria-hidden="true" />
+        <span>{label || `Call ${phoneNumber}`}</span>
+      </a>
     );
   }
 

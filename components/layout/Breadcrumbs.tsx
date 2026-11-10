@@ -10,9 +10,13 @@ export interface BreadcrumbItem {
 interface BreadcrumbsProps {
   items: BreadcrumbItem[];
   className?: string;
+  /** Use "dark" when the breadcrumb sits on a dark (navy) background. */
+  tone?: "light" | "dark";
 }
 
-export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, className = "", tone = "light" }: BreadcrumbsProps) {
+  const isDark = tone === "dark";
+
   // Build JSON-LD structured data for BreadcrumbList
   const schemaList = {
     "@context": "https://schema.org",
@@ -34,7 +38,10 @@ export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
   };
 
   return (
-    <nav aria-label="Breadcrumb" className={`text-xs text-[#637083] ${className}`}>
+    <nav
+      aria-label="Breadcrumb"
+      className={`text-xs ${isDark ? "text-slate-300" : "text-[#637083]"} ${className}`}
+    >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaList) }}
@@ -43,7 +50,9 @@ export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
         <li>
           <Link
             href="/"
-            className="flex items-center gap-1 text-[#637083] hover:text-[#2463A6] transition-colors"
+            className={`flex items-center gap-1 transition-colors ${
+              isDark ? "text-slate-300 hover:text-white" : "text-[#637083] hover:text-[#2463A6]"
+            }`}
           >
             <Home className="w-3.5 h-3.5" />
             <span className="sr-only sm:not-sr-only">Home</span>
@@ -59,13 +68,18 @@ export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
               </li>
               <li>
                 {isLast || !item.href ? (
-                  <span className="font-semibold text-[#172335]" aria-current="page">
+                  <span
+                    className={`font-semibold ${isDark ? "text-white" : "text-[#172335]"}`}
+                    aria-current="page"
+                  >
                     {item.label}
                   </span>
                 ) : (
                   <Link
                     href={item.href}
-                    className="hover:text-[#2463A6] transition-colors"
+                    className={`transition-colors ${
+                      isDark ? "hover:text-white" : "hover:text-[#2463A6]"
+                    }`}
                   >
                     {item.label}
                   </Link>

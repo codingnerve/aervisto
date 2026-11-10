@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { POPULAR_ROUTES } from "@/lib/routes-data";
 import { POPULAR_DESTINATIONS } from "@/lib/destinations-data";
 import { AIRLINES_DATA } from "@/lib/airlines-data";
+import { TRAIN_OPERATORS } from "@/lib/mock/trains";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aervisto.com";
@@ -35,6 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/airlines`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/trains`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
@@ -107,5 +114,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  return [...staticPages, ...routePages, ...destinationPages, ...airlinePages];
+  // Dynamic train operator pages
+  const trainPages: MetadataRoute.Sitemap = TRAIN_OPERATORS.map((operator) => ({
+    url: `${baseUrl}/trains/${operator.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
+
+  return [...staticPages, ...routePages, ...destinationPages, ...airlinePages, ...trainPages];
 }
