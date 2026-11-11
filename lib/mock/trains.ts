@@ -29,9 +29,9 @@ export type TrainOperator = {
 
 /**
  * Amtrak station codes are the operator's own published codes.
- * Tren Maya does not publish a station-code scheme that we are aware of, so the
- * codes below are internal identifiers (nearest airport IATA code) used only to
- * de-duplicate and label search suggestions. They are not official station codes.
+ * The VIA Rail Canada codes below are internal identifiers (nearest airport IATA
+ * code) used only to de-duplicate and label search suggestions. They are not
+ * official station codes.
  */
 export const TRAIN_OPERATORS: TrainOperator[] = [
   {
@@ -143,103 +143,110 @@ export const TRAIN_OPERATORS: TrainOperator[] = [
     ],
   },
   {
-    id: "tren-maya",
-    slug: "tren-maya",
-    code: "MAYA",
-    name: "Tren Maya",
-    country: "Mexico",
-    logoAccent: "accent",
+    id: "via-rail-canada",
+    slug: "via-rail-canada",
+    code: "VIA",
+    name: "VIA Rail Canada",
+    country: "Canada",
+    logoAccent: "secondary",
     summary:
-      "A passenger train serving the Yucatán Peninsula, connecting Caribbean-coast resort areas with colonial cities and archaeological regions. Send us your dates and we will check availability and conditions with you.",
+      "Canada's national intercity passenger rail service, from frequent trains in the busy Windsor to Québec City corridor to long-distance journeys across the country. Send us your dates and we will check live schedules and fares with you.",
     intro:
-      "Tren Maya is a passenger railway in the south-east of Mexico, designed to link destinations across the Yucatán Peninsula. Use this guide for a general overview of how travel works, then send us a request and we will confirm current services and conditions for your dates.",
+      "VIA Rail Canada is a national passenger railway linking cities and communities across Canada, with regular services between Toronto, Ottawa, Montréal and Québec City and long-distance trains that cross the country. Use this guide to understand how tickets, seating and baggage generally work, then send us a request and we will confirm the details for your trip.",
     highlights: [
-      "Yucatán Peninsula routes",
-      "Resorts, cities and heritage sites",
-      "Details confirmed before booking",
+      "Corridor and coast-to-coast routes",
+      "Several seat and sleeper types",
+      "Requests handled by our team",
     ],
     guideIntro:
-      "Tren Maya connects a range of destinations across the Yucatán Peninsula, so it can suit travellers combining coast, cities and archaeological sites in one trip. The railway has opened in stages, so which stations and services are running can differ depending on when you travel. We check the current position for your dates rather than relying on a fixed list.",
+      "VIA Rail Canada runs two broad kinds of service. Corridor trains connect cities in the Windsor to Québec City region with frequent daily departures, while long-distance trains, such as the routes towards Vancouver and Halifax, run less often and can include several nights on board. Which suits you depends on your route, your timing and how much comfort you want.",
     whyBook:
-      "Many travellers reach the region by air, so the train often forms one leg of a longer itinerary. When you send a request to our team, we consider your flights and rail plans together, which helps when arrival times and station locations need to line up. We confirm fares, schedules and conditions with you before anything is booked, and no payment is taken on this website.",
+      "Many travellers reach Canada by air, so a train is often one leg of a longer trip, for example flying into Toronto or Montréal and continuing by rail. When you send a request to our team, we look at the train and the rest of your itinerary together, so arrival times and station locations are checked as a whole. We confirm fares, schedules and conditions with you before anything is booked, and no payment is taken on this website.",
     howToBook:
-      "Enter your stations, dates and number of passengers in the search above, or call our team. We look at the services available on your dates, discuss the choices with you, and confirm ticket conditions before any booking is made. Because services and stations have changed over time, we always verify the current position first.",
+      "Start by entering your stations, dates and number of passengers in the search above, or call our team. We review the services running on your dates, talk through the options with you, and confirm the conditions of the ticket before any booking is made. If your plans are still flexible, tell us and we can look at nearby dates as well.",
     manageBooking:
-      "After a trip is confirmed, keep your confirmation details safe and contact our team if you have questions. If your plans change, we explain which options apply to your ticket and how to proceed.",
+      "Once a trip is confirmed, keep your confirmation details to hand and contact our team if you have questions about your booking. If your plans change, we explain the options that apply to your particular fare and, where needed, how to proceed with the operator.",
     seatClassesIntro:
-      "Tren Maya has described more than one travel option on board. Naming, layout and availability can change, so the points below are general and we confirm what is current for your date.",
+      "VIA Rail Canada generally offers a choice of accommodation on its services. Availability depends on the train, so the options below are a general guide and not a promise for every route.",
     seatClasses: [
       {
-        name: "Standard seating",
+        name: "Economy",
         description:
-          "The everyday choice for most passengers, suitable for sightseeing and shorter hops between destinations. Seat layout and facilities depend on the train.",
+          "The standard seat on most services, suitable for day trips and shorter journeys. Seat layout and facilities depend on the train.",
       },
       {
-        name: "Premium seating",
+        name: "Business",
         description:
-          "A more comfortable option on selected services, usually with extra space. Not every service offers it, so ask us to confirm before you plan around it.",
+          "A step up in comfort on selected services, often with extra space and some added extras. What is included depends on the service, so ask us to confirm before you plan around it.",
+      },
+      {
+        name: "Sleeper accommodation",
+        description:
+          "Private sleeping accommodation on selected long-distance trains for overnight travel. It is not offered on short corridor services, and we can confirm what is available on your dates.",
       },
     ],
     changePolicy:
-      "Whether a ticket can be changed, and the cost of doing so, depends on the ticket type and the operator's rules at the time of booking. We confirm change conditions with you before anything is booked, so you know the position in advance.",
+      "Whether a ticket can be changed, and at what cost, depends on the fare type you choose and the rules attached to it. Some lower fares are more restricted than others. We confirm the change conditions for your ticket with you before anything is booked, so there are no surprises later.",
     cancellationPolicy:
-      "Cancellation and refund rules depend on the ticket and on timing. Do not assume that a ticket is refundable. Ask our team before you commit, and we will explain the conditions for the ticket you are considering.",
+      "Cancellation rules and any refund or credit also depend on the fare type and on how close to departure you cancel. Do not assume a ticket is refundable. Ask our team before you commit, and we will explain the conditions that apply to your specific ticket.",
     baggageIntro:
-      "Luggage allowances on Tren Maya depend on the service and ticket, and we do not quote fixed limits here. Tell us what you are travelling with and we will confirm what is permitted.",
+      "Baggage allowances on VIA Rail Canada differ by service and ticket, and we do not quote fixed limits here. Tell us what you are travelling with and we will confirm what is permitted on your journey.",
     baggage: [
       {
         title: "Carry-on bags",
         detail:
-          "Passengers generally keep smaller bags with them on board. Size and number limits apply and may differ by service, so check with us before you pack.",
+          "Passengers usually keep a small number of bags with them in the carriage, stored overhead or at their seat. Size and quantity limits apply and can vary by service.",
       },
       {
-        title: "Larger luggage",
+        title: "Checked baggage",
         detail:
-          "If you are travelling with large suitcases, sports gear or other bulky items, let us know in advance. We confirm what can be carried and how it is handled on your route.",
+          "Checked baggage is only available at some stations and on some trains. If you plan to bring larger luggage, tell us in advance so we can check what is possible on your route.",
       },
     ],
     stationCheckIn:
-      "Allow generous time to reach the station, locate the right platform and complete any checks before departure. Some stations are outside city centres, so transfers from hotels or airports are worth planning in advance. Our team can tell you which station suits your trip and what documents to carry.",
+      "Most travellers arrive at the station well ahead of departure to find the correct platform, collect any documents and board without rushing. Facilities vary from large city stations to small stops on long-distance routes. Our team can tell you what to expect at your departure station and what identification to carry.",
     popularCorridors: [
-      { label: "Cancún Airport to Playa del Carmen", typicalDuration: "about 1h" },
-      { label: "Cancún Airport to Tulum", typicalDuration: "about 1h 30m to 2h" },
-      { label: "Playa del Carmen to Tulum", typicalDuration: "about 45m to 1h" },
-      { label: "Cancún Airport to Mérida", typicalDuration: "about 5h to 6h" },
-      { label: "Mérida to Campeche", typicalDuration: "about 2h to 3h" },
-      { label: "Campeche to Palenque", typicalDuration: "about 3h to 4h" },
-      { label: "Tulum to Bacalar", typicalDuration: "about 1h 30m to 2h" },
-      { label: "Cancún Airport to Chetumal", typicalDuration: "about 3h to 4h" },
+      { label: "Toronto to Montréal", typicalDuration: "about 5h to 6h" },
+      { label: "Toronto to Ottawa", typicalDuration: "about 4h to 5h" },
+      { label: "Montréal to Ottawa", typicalDuration: "about 2h" },
+      { label: "Montréal to Québec City", typicalDuration: "about 3h to 3h 30m" },
+      { label: "Toronto to Kingston", typicalDuration: "about 2h to 2h 30m" },
+      { label: "Toronto to Windsor", typicalDuration: "about 4h to 4h 30m" },
+      { label: "Montréal to Halifax", typicalDuration: "about 21h to 23h" },
+      { label: "Toronto to Vancouver", typicalDuration: "about 4 days" },
     ],
     stations: [
-      { code: "CUN", name: "Cancún Airport", city: "Cancún" },
-      { code: "PCM", name: "Playa del Carmen", city: "Playa del Carmen" },
-      { code: "TQO", name: "Tulum", city: "Tulum" },
-      { code: "BCL", name: "Bacalar", city: "Bacalar" },
-      { code: "CTM", name: "Chetumal", city: "Chetumal" },
-      { code: "MID", name: "Mérida", city: "Mérida" },
-      { code: "CPE", name: "Campeche", city: "Campeche" },
-      { code: "PQM", name: "Palenque", city: "Palenque" },
+      { code: "YYZ", name: "Toronto Union Station", city: "Toronto" },
+      { code: "YUL", name: "Montréal Central Station", city: "Montréal" },
+      { code: "YOW", name: "Ottawa Station", city: "Ottawa" },
+      { code: "YQB", name: "Québec City Gare du Palais", city: "Québec City" },
+      { code: "YGK", name: "Kingston Station", city: "Kingston" },
+      { code: "YQG", name: "Windsor Station", city: "Windsor" },
+      { code: "YHZ", name: "Halifax Station", city: "Halifax" },
+      { code: "YEG", name: "Edmonton Station", city: "Edmonton" },
+      { code: "YJA", name: "Jasper Station", city: "Jasper" },
+      { code: "YVR", name: "Vancouver Pacific Central Station", city: "Vancouver" },
     ],
     faqs: [
       {
-        question: "Can I book Tren Maya tickets on this website?",
+        question: "Can I book VIA Rail Canada tickets on this website?",
         answer:
-          "No. This website does not take payment. You send us a request, our team checks availability, and we confirm everything with you before anything is booked.",
+          "No. This website does not take payment. You send us a request, our team checks live schedules and fares, and we confirm everything with you before anything is booked.",
       },
       {
-        question: "Are all stations and routes running?",
+        question: "How early should I arrive at the station?",
         answer:
-          "The railway has opened in stages, so the services running can depend on your travel date. We verify the current position for your dates when you send a request.",
+          "Arriving with comfortable time to spare is sensible, especially at large stations or if you are checking baggage. Our team can suggest a timing that suits your service and ticket when we confirm your trip.",
       },
       {
         question: "Can I change or cancel my ticket?",
         answer:
-          "It depends on the ticket and the rules attached to it. We explain the conditions for your specific ticket before you decide to go ahead.",
+          "It depends on the fare you choose. Some fares are flexible and some are not, so we explain the conditions for your specific ticket before you decide.",
       },
       {
         question: "Are the journey times on this page exact?",
         answer:
-          "No. Journey times shown are approximate guidance only and vary by service and day. We confirm the schedule for your date when you send a request.",
+          "No. Journey times shown are approximate guidance only and vary by service, day and time. We confirm the schedule for your date when you send a request.",
       },
     ],
   },
